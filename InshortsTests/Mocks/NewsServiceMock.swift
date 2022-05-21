@@ -10,10 +10,10 @@ import Combine
 @testable import Inshorts
 
 final class NewsServiceMock: NewsServiceProtocol {
-    var newsPublisher = PassthroughSubject<News, APIError>()
+    var newsPublisher: AnyPublisher<News, APIError>!
     var requestNewsCalled = [Bool]()
     func requestNews(endpoint: Endpoint) -> AnyPublisher<News, APIError> {
         requestNewsCalled.append(true)
-        return newsPublisher.eraseToAnyPublisher()
+        return newsPublisher
     }
 }

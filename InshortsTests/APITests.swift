@@ -16,4 +16,10 @@ class APITests: XCTestCase {
             XCTAssertEqual(urlRequest.url?.absoluteString, "https://inshorts.deta.dev/news?category=\($0.rawValue)", "Wrong Path for \($0.rawValue)")
         }
     }
+
+    func test_Endpoint_NewsCategory() throws {
+        NewsSection.allCases.forEach { section in
+            XCTAssertNotNil(Endpoint(rawValue: section.rawValue), "Can't create Endpoint for NewsSection \(section.rawValue)")
+        }
+    }
 }
