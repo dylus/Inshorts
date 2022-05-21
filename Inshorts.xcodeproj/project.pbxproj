@@ -15,6 +15,10 @@
 		904B259E2837E7B900C1F63D /* InshortsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904B259D2837E7B900C1F63D /* InshortsUITests.swift */; };
 		904B25A02837E7B900C1F63D /* InshortsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904B259F2837E7B900C1F63D /* InshortsUITestsLaunchTests.swift */; };
 		906F0B64283949C2009BF118 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906F0B63283949C2009BF118 /* News.swift */; };
+		906F0B6728394C16009BF118 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906F0B6628394C16009BF118 /* API.swift */; };
+		906F0B6928394EE6009BF118 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906F0B6828394EE6009BF118 /* APITests.swift */; };
+		906F0B6B283957BD009BF118 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906F0B6A283957BD009BF118 /* APIError.swift */; };
+		906F0B6D28395813009BF118 /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906F0B6C28395813009BF118 /* APIErrorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		904B259D2837E7B900C1F63D /* InshortsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InshortsUITests.swift; sourceTree = "<group>"; };
 		904B259F2837E7B900C1F63D /* InshortsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InshortsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		906F0B63283949C2009BF118 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		906F0B6628394C16009BF118 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		906F0B6828394EE6009BF118 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		906F0B6A283957BD009BF118 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		906F0B6C28395813009BF118 /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +104,7 @@
 		904B25812837E7B300C1F63D /* Inshorts */ = {
 			isa = PBXGroup;
 			children = (
+				906F0B6528394BFB009BF118 /* Endpoints */,
 				906F0B622839495C009BF118 /* Models */,
 				904B25AC2839429800C1F63D /* Views */,
 				904B25822837E7B300C1F63D /* InshortsApp.swift */,
@@ -117,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				904B25932837E7B900C1F63D /* InshortsTests.swift */,
+				906F0B6828394EE6009BF118 /* APITests.swift */,
+				906F0B6C28395813009BF118 /* APIErrorTests.swift */,
 			);
 			path = InshortsTests;
 			sourceTree = "<group>";
@@ -144,6 +155,15 @@
 				906F0B63283949C2009BF118 /* News.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		906F0B6528394BFB009BF118 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				906F0B6628394C16009BF118 /* API.swift */,
+				906F0B6A283957BD009BF118 /* APIError.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +297,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				906F0B64283949C2009BF118 /* News.swift in Sources */,
+				906F0B6B283957BD009BF118 /* APIError.swift in Sources */,
 				904B25852837E7B300C1F63D /* HomeListView.swift in Sources */,
+				906F0B6728394C16009BF118 /* API.swift in Sources */,
 				904B25832837E7B300C1F63D /* InshortsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +308,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906F0B6D28395813009BF118 /* APIErrorTests.swift in Sources */,
+				906F0B6928394EE6009BF118 /* APITests.swift in Sources */,
 				904B25942837E7B900C1F63D /* InshortsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
