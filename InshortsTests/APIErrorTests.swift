@@ -10,15 +10,15 @@ import XCTest
 
 class APIErrorTests: XCTestCase {
     func test_Error_Decoding_Descrption() throws {
-        XCTAssertEqual(APIError.decoding.description, "Decode Error")
+        XCTAssertEqual(APIError.decoding.errorDescription, "Decode Error")
     }
 
     func test_Error_Code() throws {
         let code = 400
-        XCTAssertEqual(APIError.code(code).description, "\(code) - Error code")
+        XCTAssertEqual(APIError.code(code).errorDescription, "\(code) - Error code")
     }
 
     func test_Error_Unknow() throws {
-        XCTAssertEqual(APIError.unknown.description, "Unknown error")
+        XCTAssertEqual(APIError.unknown.errorDescription, "Unknown error")
     }
 }

@@ -14,7 +14,7 @@ enum APIError: Error {
 }
 
 extension APIError: LocalizedError {
-    public var description: String? {
+    public var errorDescription: String? {
         switch self {
         case .decoding:
             return "Decode Error"
