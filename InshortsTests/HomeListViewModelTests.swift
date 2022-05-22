@@ -53,13 +53,13 @@ class HomeListViewModelTests: XCTestCase {
         var expectedState: HomeListViewModelState!
         newsServiceMock.newsPublisher = Result.success(News.news).publisher.eraseToAnyPublisher()
 
-        subject.$state.dropFirst().sink { state in
+        subject.$state.dropFirst(2).sink { state in
             expectedState = state
             switch state {
             case .pending:
                 XCTFail("Wrong state .pending")
-            case .finished(let news):
-                XCTAssertEqual(news?.articles?.count, 2)
+            case .finished(let articles):
+                XCTAssertEqual(articles.count, 2)
             case .failure(_):
                 XCTFail("Wrong state .failure")
             }
@@ -78,7 +78,7 @@ class HomeListViewModelTests: XCTestCase {
         let expError = APIError.unknown
         newsServiceMock.newsPublisher = Fail(error: expError).eraseToAnyPublisher()
 
-        subject.$state.dropFirst().sink { state in
+        subject.$state.dropFirst(2).sink { state in
             expectedState = state
             switch state {
             case .pending:

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 
-enum NewsSection: String, CaseIterable {
+enum NewsSection: String, CaseIterable, Identifiable, Equatable {
     case all
     case national
     case business
@@ -23,11 +23,15 @@ enum NewsSection: String, CaseIterable {
     case hatke
     case science
     case automobile
+
+    var id: UUID {
+        UUID()
+    }
 }
 
 enum HomeListViewModelState {
     case pending
-    case finished(News?)
+    case finished([Article])
     case failure(Error)
 }
 
@@ -42,13 +46,14 @@ final class HomeListViewModel: HomeListViewModelProtocol, ObservableObject {
 
     @Published private(set) var state: HomeListViewModelState = .pending
 
-    private var news: News?
+    private var articles = [Article]()
 
     init(newsService: NewsServiceProtocol = NewsService()) {
         self.newsService = newsService
     }
 
     func fetchNews(section: NewsSection) {
+        state = .pending
         guard let endpoint = Endpoint(rawValue: section.rawValue) else {
             // TODO: Make sure we have better error here
             state = .failure(APIError.unknown)
@@ -57,15 +62,17 @@ final class HomeListViewModel: HomeListViewModelProtocol, ObservableObject {
         }
         newsService
             .requestNews(endpoint: endpoint)
-            .sink { [weak self] completion in
+        // TODO: Weak SELF???
+            .sink { completion in
                 switch completion {
                 case .finished:
-                    self?.state = .finished(self?.news)
+                    self.state = .finished(self.articles)
                 case .failure( let error ):
-                    self?.state = .failure(error)
+                    self.state = .failure(error)
                 }
             } receiveValue: { news in
-                self.news = news
+                guard let articles = news.articles else { return }
+                self.articles = articles
             }
             .store(in: &store)
     }
