@@ -40,7 +40,7 @@ protocol HomeListViewModelProtocol {
     func fetchNews(section: NewsSection)
 }
 
-final class HomeListViewModel: HomeListViewModelProtocol, ObservableObject {
+final class HomeListViewModel: ObservableObject, HomeListViewModelProtocol {
     private let newsService: NewsServiceProtocol
     private var store = Set<AnyCancellable>()
 
@@ -55,24 +55,23 @@ final class HomeListViewModel: HomeListViewModelProtocol, ObservableObject {
     func fetchNews(section: NewsSection) {
         state = .pending
         guard let endpoint = Endpoint(rawValue: section.rawValue) else {
-            // TODO: Make sure we have better error here
             state = .failure(APIError.unknown)
             debugPrint("Error - can't find Endpoint for section \(section.rawValue)")
             return
         }
         newsService
             .requestNews(endpoint: endpoint)
-        // TODO: Weak SELF???
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
+                    guard let self = self else { return }
                     self.state = .finished(self.articles)
                 case .failure( let error ):
-                    self.state = .failure(error)
+                    self?.state = .failure(error)
                 }
-            } receiveValue: { news in
+            } receiveValue: { [weak self] news in
                 guard let articles = news.articles else { return }
-                self.articles = articles
+                self?.articles = articles
             }
             .store(in: &store)
     }

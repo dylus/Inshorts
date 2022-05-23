@@ -15,17 +15,14 @@ struct HomeListView: View {
         Group {
             NavigationView {
                 VStack {
-                    ScrollView(.horizontal) {
-                        Picker("News Section Picker", selection: $selectedNewsSectionIndex) {
-                            ForEach(NewsSection.allCases) {
-                                Text($0.rawValue.capitalized).tag($0)
-                            }
+                    Picker("News Section Picker", selection: $selectedNewsSectionIndex) {
+                        ForEach(NewsSection.allCases) {
+                            Text($0.rawValue.capitalized).tag($0)
                         }
-                        .pickerStyle(.segmented)
-                        .padding()
-                        .onChange(of: selectedNewsSectionIndex) {
-                            viewModel.fetchNews(section: $0)
-                        }
+                    }
+                    .pickerStyle(.menu)
+                    .onChange(of: selectedNewsSectionIndex) {
+                        viewModel.fetchNews(section: $0)
                     }
 
                     Spacer()

@@ -27,10 +27,6 @@ enum Endpoint: String, CaseIterable {
     case hatke
     case science
     case automobile
-
-    var category: String {
-        "category"
-    }
 }
 
 extension Endpoint: Builder {
@@ -39,7 +35,7 @@ extension Endpoint: Builder {
     }
 
     var baseUrl: URL {
-        let queryItems = [URLQueryItem(name: category, value: rawValue)]
+        let queryItems = [URLQueryItem(name: categoryQuery, value: rawValue)]
         var urlComponents = URLComponents(string: "https://inshorts.deta.dev/")
         urlComponents?.queryItems = queryItems
         guard let url = urlComponents?.url! else {
@@ -51,5 +47,9 @@ extension Endpoint: Builder {
 
     var path: String {
         "news"
+    }
+
+    var categoryQuery: String {
+        "category"
     }
 }

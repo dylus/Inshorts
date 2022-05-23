@@ -122,9 +122,9 @@
 		904B25812837E7B300C1F63D /* Inshorts */ = {
 			isa = PBXGroup;
 			children = (
+				904B25822837E7B300C1F63D /* InshortsApp.swift */,
 				904B25862837E7B800C1F63D /* Assets.xcassets */,
 				906F0B6528394BFB009BF118 /* Endpoints */,
-				904B25822837E7B300C1F63D /* InshortsApp.swift */,
 				906F0B622839495C009BF118 /* Models */,
 				904B25882837E7B800C1F63D /* Preview Content */,
 				906F0B6E283959D2009BF118 /* Services */,
